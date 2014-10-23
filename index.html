@@ -1,8 +1,219 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=http://imageio.readthedocs.org">
-    </head>
-    <body>
-    Redirecting to <a href='http://imageio.readthedocs.org'>http://imageio.readthedocs.org</a>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Imageio website </title>
+    
+    <style>
+    
+    body {
+        font-family: "verdana", sans;
+        font-size: 100%;
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 100px;
+        background-color: #fff;
+        color: #134;
+    }
+    section {        
+        margin: 0.5em auto;
+        max-width: 700px; 
+        font-size: 1.0em;      
+    }
+    section .summary {
+        font-size: 1.25em;
+    }    
+    header {
+        box-sizing: border-box;
+        position: static;       
+        float: left;
+
+        top: 0px;
+        left: 0px;       
+        width: 100%;
+        padding: 0.5em;
+        margin: 0px;
+        margin-bottom: 1em;
+
+        background-color: #333;
+        text-align: center;
+        color: #fff;
+        border-bottom: 2px solid #000;
+        font-size: 1.5em;
+    }
+    header a {   
+        color: #fff;     
+        text-decoration: none;
+        font-weight: bold;
+    }    
+    nav {
+        box-sizing: border-box;
+        position: static;
+        float: right;
+
+        padding: 1em;
+        margin: 0em 20% 0em 1em;
+
+        background-color: #eee;
+        border-radius: 5px;
+        border: 1px solid #aaa;        
+    }
+    nav a {
+        display: block;
+        margin: 0.5em 0.5em;
+        color: #234;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    kdb {
+        background-color: #eee;
+        font-family: "Lucida Consolee", monospace;
+        padding: 0.1em 0.5em;
+    }
+    pre {
+        background-color: #eee;
+        font-family: "Lucida Consolee", monospace;
+        font-size: 1em;
+        padding: 0.5em;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        margin: 1em 2em;
+        color: #222;
+    }
+    footer {
+        box-sizing: border-box;
+        position: fixed;
+        
+        margin: 0px;
+        padding: 0.6em;
+        width: 100%;        
+        bottom: 0px;
+        left: 0px;
+
+        font-size: 0.8em;
+        color: #777;
+        background-color: #333;
+        border-top: 2px solid #000;
+    }
+    footer a {
+        color: #777;     
+    }
+    
+    @media screen and (max-width: 1800px) {
+        nav { margin-right: 8%; }
+    }
+    @media screen and (max-width: 1400px) {
+        nav { margin-right: 2%; }
+    }
+    @media screen and (max-width: 1000px) {
+        nav {
+            width: 100%;
+            margin: 0em 0em 1em 0em;
+        }
+        nav a {
+            display: inline;
+        }
+    }
+    @media screen and (max-width: 550px) {
+        nav {
+            width: 100%;
+            margin: 0em 0em 1em 0em;
+        }
+        nav a {
+            display: block;
+        }
+    }
+    </style>
+   
+</head>
+<body onload="startup();">
+
+<header>
+<a href='#'>imageio</a> - a Python library for reading and writing image data
+<br><br>
+<img src="https://raw.githubusercontent.com/imageio/imageio-binaries/master/images/imageio_banner.png">
+</header>
+
+
+<nav>
+Links:
+     <span><a href='http://imageio.readthedocs.org'> Documentation</a></span>
+     <span><a href='http://github.com/imageio/imageio'>Github repo</a></span>
+     <span><a href='http://groups.google.com/d/forum/imageio'>Mailing list</a></span>
+</nav>
+
+
+<br>
+
+<section id='content'>
+
+
+<p class='summary'>
+
+The imageio library aims to support reading and writing a wide 
+range of image data, including animated images, volumetric data, 
+and scientific formats. It is written in pure Python (2.x and 3.x) 
+and is designed to be powerful, yet simple in usage and installation.
+</p>
+<p>
+Imageio has a relatively simple core that provides a common interface 
+to different file formats. The actual file formats are implemented in 
+plugins, which makes imageio easy to extend. A large range of formats
+are already supported (in part thanks to the freeimage library), but we 
+aim to include much more (scientific) formats in the future.
+</p>
+
+
+<h2>Example</h2>
+Here's a minimal example of how to use imageio. For more examples, see XXX.
+<pre>
+>>> import imageio
+>>> im = imageio.imread('chelsea.png')
+>>> im.shape  # im is a numpy array
+(300, 451, 3)
+>>> imageio.imsave('chelsea-gray.jpg', im[:,:,0])
+</pre>
+
+<h2>API in a nutshell</h2>
+As a user, you just have to remember a handfull of functions:
+
+<ul>
+    <li>imread() and imsave() - for single images</li>
+    <li>mimread() and mimsave() - for image series (animations)</li>
+    <li>volread() and volsave() - for volumetric image data</li>
+    <li>read() and save() - for more control (e.g. streaming)</li>
+</ul>
+
+
+<h2>Features</h2>
+<ul>
+    <li>Simple interface via a consise set of functions.</li>
+    <li>Easy to install (no compilation required, binaries are automatically downloaded).</li>    
+    <li>Pure Python, runs on Python 2.x, 3.x, Pypy, Jython?</li>
+    <li>Lots of supported formats.</li>
+    <li>Can also read from zipfiles, http/ftp, and raw bytes.</li>
+    <li>Easy to extend using plugins.</li>
+</ul>
+
+
+<h2>Installation</h2>
+
+<ul>
+    <li>Via pip: <kdb>pip install imageio</kdb></li>
+    <li>Via conda: <kdb>conda install imageio</kdb> (to come)</li> 
+    <li>Get the the source code, and call <kdb>python setup.py install</kdb>
+</ul>
+
+
+
+</section>
+
+<footer>
+Copyright &#169; 2014 Almar Klein<br>
+Code licensed under <a href='http://opensource.org/licenses/BSD-2-Clause'>BSD license</a>, 
+website and documentation under <a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0 </a>
+</footer>
+
+</body>
 </html>
+
